@@ -1,0 +1,9 @@
+.navColor{
+    background-color: rgb(3, 97, 204) !important;
+    border-bottom: none;
+    outline: none;
+    box-shadow: none !important;
+}
+.navTransparent{
+    background-color: transparent !important;
+}
