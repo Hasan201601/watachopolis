@@ -1,9 +1,29 @@
 import { TextField, Typography, Button } from '@mui/material';
 import { Box } from '@mui/system';
-import React from 'react';
+import React, { useState } from 'react';
+import Alert from '@mui/material/Alert';
 
 const MakeAdmin = () => {
+    const [successful, setSuccessful] = useState(false)
+    const [email, setEmail] = useState('')
+    const handleOnBlur = e => {
+        setEmail(e.target.value)
+    }
     const handleFormSubmit = e => {
+        setSuccessful(false)
+        const user = { email };
+        fetch('http://localhost:5000/users/admin', {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+            .then(res => res.json())
+            .then(data => {
+                setSuccessful(true)
+                console.log(data)
+            })
         e.preventDefault()
     }
     return (
@@ -18,9 +38,12 @@ const MakeAdmin = () => {
                     hiddenLabel
                     fullWidth
                     sx={{ my: 1 }}
+                    onBlur={handleOnBlur}
                 ></TextField>
                 <Button type="submit" size="large" variant="contained" sx={{ my: 2 }}>Make Admin</Button>
+                {successful && <Alert severity="success">Admin Made Successfully</Alert>}
             </Box>
+
         </Box >
     );
 };

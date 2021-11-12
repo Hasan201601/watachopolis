@@ -1,11 +1,24 @@
-import { Button, TextField } from '@mui/material';
+import { Alert, Button, TextField } from '@mui/material';
 import { Box } from '@mui/system';
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from "react-hook-form";
 
 const AddNewWatch = () => {
-    const { register, handleSubmit } = useForm();
-    const onSubmit = data => console.log(data);
+    const { register, handleSubmit, reset } = useForm();
+    const [successful, setSuccessful] = useState(false)
+    const onSubmit = data => {
+        setSuccessful(false)
+        console.log(data)
+        fetch("http://localhost:5000/watches", {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+            .then(() => setSuccessful(true))
+        reset()
+    };
     return (
         <Box component="form" sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', my: 5 }} onSubmit={handleSubmit(onSubmit)}>
             <TextField variant="standard" placeholder="Image Url" sx={{ width: { lg: '45%', md: '65%', xs: '80%' }, my: 2 }} {...register("img")} />
@@ -16,6 +29,7 @@ const AddNewWatch = () => {
             <TextField variant="standard" placeholder="specification3" sx={{ width: { lg: '45%', md: '65%', xs: '80%' }, my: 2 }} type="text" {...register("spec3")} />
             <TextField variant="standard" placeholder="Description" rows={3} multiline sx={{ width: { lg: '45%', md: '65%', xs: '80%' }, my: 2, resize: 'vertical' }} type="number" {...register("age", { min: 18, max: 99 })} />
             <Button variant="contained" type="submit" >ADD WATCH</Button>
+            {successful && <Alert severity="success">Product Added Successfully</Alert>}
         </Box>
     );
 };

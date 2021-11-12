@@ -1,10 +1,14 @@
 import { Button, TextField, Typography } from '@mui/material';
 import { Box, textAlign } from '@mui/system';
-import React from 'react';
+import Alert from '@mui/material/Alert';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import Rating from '@mui/material/Rating';
 import StarIcon from '@mui/icons-material/Star';
 import useAuth from '../../../Hooks/useAuth';
+
+
+
 
 const labels = {
     0.5: 'Useless',
@@ -21,14 +25,26 @@ const labels = {
 
 const Review = () => {
     const { user } = useAuth();
+    const [successful, setSuccessful] = useState(false)
     const [value, setValue] = React.useState(2);
     console.log(value)
     const [hover, setHover] = React.useState(-1);
-    const { register, handleSubmit } = useForm();
+    const { register, handleSubmit, reset } = useForm();
     const onSubmit = data => {
+        setSuccessful(false)
         data.rating = value;
-        console.log(data)
-    };
+        console.log(data);
+        //send review to database
+        fetch('http://localhost:5000/reviews', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+            .then(() => setSuccessful(true))
+        reset()
+    }
     return (
         <Box component="form" sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', my: 5 }} onSubmit={handleSubmit(onSubmit)}>
             <Typography variant="h5" sx={{ my: 3 }}>Share Your Opinion</Typography>
@@ -70,13 +86,15 @@ const Review = () => {
                 }}
 
             >
-                <TextField defaultValue={user.displayName} variant="standard" placeholder="name" sx={{ width: '48%', textAlign: 'center' }} {...register("img")} />
+                <TextField defaultValue={user.displayName} variant="standard" placeholder="name" sx={{ width: '48%', textAlign: 'center' }} {...register("name")} />
 
                 <TextField defaultValue={user.email} variant="standard" placeholder="email" sx={{ ml: 1, width: '48%', textAlign: 'center' }} {...register("title")} />
             </Box>
             <TextField variant="standard" placeholder="Write Your Review" rows={3} multiline sx={{ width: { lg: '45%', md: '65%', xs: '80%' }, my: 2, resize: 'vertical' }} type="number" {...register("age", { min: 18, max: 99 })} />
             <Button variant="contained" type="submit" >Write A Review</Button>
+            {successful && <Alert severity="success">Review Submitted Successfully</Alert>}
         </Box>
+
     );
 };
 

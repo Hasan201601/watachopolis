@@ -25,7 +25,7 @@ import { Container, Grid, Paper } from '@mui/material';
 const drawerWidth = 240;
 
 function DashBoardHome(props) {
-    const { user } = useAuth()
+    const { user, admin, logOut } = useAuth()
     let { path, url } = useRouteMatch();
     const { window } = props;
     const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -43,53 +43,70 @@ function DashBoardHome(props) {
             </Typography>
             {/* Nested Navigation Dashboard */}
             <List>
-                <ListItem button >
+                {
+                    !admin ?
+                        <ListItem button >
+                            <ListItemText style={{ color: 'white' }}>
+                                <Link to={`${url}`} style={{ textDecoration: 'none', color: 'white' }}>
+                                    My Orders
+                                </Link>
+                            </ListItemText>
+                        </ListItem> :
+                        <ListItem button >
+                            <ListItemText style={{ color: 'white' }}>
+                                <Link to={`${url}`} style={{ textDecoration: 'none', color: 'white' }}>
+                                    Manage All Orders
+                                </Link>
+                            </ListItemText>
+                        </ListItem>
+
+                }
+                {
+                    admin ?
+                        <Box>
+                            <ListItem button >
+                                <ListItemText style={{ color: 'white' }}>
+                                    <Link to={`${url}/addNewWatch`} style={{ textDecoration: 'none', color: 'white' }}>
+                                        Add New Watch
+                                    </Link>
+                                </ListItemText>
+                            </ListItem>
+                            <ListItem button >
+                                <ListItemText style={{ color: 'white' }}>
+                                    <Link to={`${url}/manageWatches`} style={{ textDecoration: 'none', color: 'white' }}>
+                                        Manage Watches
+                                    </Link>
+                                </ListItemText>
+                            </ListItem>
+
+                            <ListItem button >
+                                <ListItemText style={{ color: 'white' }}>
+                                    <Link to={`${url}/makeAdmin`} style={{ textDecoration: 'none', color: 'white' }}>
+                                        Make Admin
+                                    </Link>
+                                </ListItemText>
+                            </ListItem>
+                        </Box> :
+                        <Box>
+                            <ListItem button >
+                                <ListItemText style={{ color: 'white' }}>
+                                    <Link to={`${url}/pay`} style={{ textDecoration: 'none', color: 'white' }}>
+                                        Pay
+                                    </Link>
+                                </ListItemText>
+                            </ListItem>
+                            <ListItem button >
+                                <ListItemText style={{ color: 'white' }}>
+                                    <Link to={`${url}/review`} style={{ textDecoration: 'none', color: 'white' }}>
+                                        Review
+                                    </Link>
+                                </ListItemText>
+                            </ListItem>
+                        </Box>
+                }
+                <ListItem onClick={logOut} button >
                     <ListItemText style={{ color: 'white' }}>
-                        <Link to={`${url}`} style={{ textDecoration: 'none', color: 'white' }}>
-                            My Orders
-                        </Link>
-                    </ListItemText>
-                </ListItem>
-                <ListItem button >
-                    <ListItemText style={{ color: 'white' }}>
-                        <Link to={`${url}/addNewWatch`} style={{ textDecoration: 'none', color: 'white' }}>
-                            Add New Watch
-                        </Link>
-                    </ListItemText>
-                </ListItem>
-                <ListItem button >
-                    <ListItemText style={{ color: 'white' }}>
-                        <Link to={`${url}/manageWatches`} style={{ textDecoration: 'none', color: 'white' }}>
-                            Manage Watches
-                        </Link>
-                    </ListItemText>
-                </ListItem>
-                <ListItem button >
-                    <ListItemText style={{ color: 'white' }}>
-                        <Link to={`${url}/manageAllOrders`} style={{ textDecoration: 'none', color: 'white' }}>
-                            Manage All Orders
-                        </Link>
-                    </ListItemText>
-                </ListItem>
-                <ListItem button >
-                    <ListItemText style={{ color: 'white' }}>
-                        <Link to={`${url}/makeAdmin`} style={{ textDecoration: 'none', color: 'white' }}>
-                            Make Admin
-                        </Link>
-                    </ListItemText>
-                </ListItem>
-                <ListItem button >
-                    <ListItemText style={{ color: 'white' }}>
-                        <Link to={`${url}/pay`} style={{ textDecoration: 'none', color: 'white' }}>
-                            Pay
-                        </Link>
-                    </ListItemText>
-                </ListItem>
-                <ListItem button >
-                    <ListItemText style={{ color: 'white' }}>
-                        <Link to={`${url}/review`} style={{ textDecoration: 'none', color: 'white' }}>
-                            Review
-                        </Link>
+                        LogOut
                     </ListItemText>
                 </ListItem>
             </List>
@@ -164,18 +181,22 @@ function DashBoardHome(props) {
             >
                 {/* Dashboard Routes */}
                 <Switch>
-                    <Route exact path={path}>
-                        <MyOrders></MyOrders>
-                    </Route>
+                    {!admin ?
+                        <Route exact path={path}>
+                            <MyOrders></MyOrders>
+                        </Route> :
+                        <Route exact path={path}>
+                            <ManageAllOrders></ManageAllOrders>
+                        </Route>
+
+                    }
                     <Route path={`${path}/addNewWatch`}>
                         <AddNewWatch></AddNewWatch>
                     </Route>
                     <Route path={`${path}/manageWatches`}>
                         <ManageWatches></ManageWatches>
                     </Route>
-                    <Route path={`${path}/manageAllOrders`}>
-                        <ManageAllOrders></ManageAllOrders>
-                    </Route>
+
                     <Route path={`${path}/makeAdmin`}>
                         <MakeAdmin></MakeAdmin>
                     </Route>
