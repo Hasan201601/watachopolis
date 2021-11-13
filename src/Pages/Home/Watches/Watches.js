@@ -9,7 +9,7 @@ const Watches = () => {
     console.log(watches)
 
     useEffect(() => {
-        fetch('http://localhost:5000/watches')
+        fetch('https://blooming-refuge-00817.herokuapp.com/watches')
             .then(res => res.json())
             .then(data => setWatches(data))
     }, [])

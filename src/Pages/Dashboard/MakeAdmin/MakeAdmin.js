@@ -12,7 +12,7 @@ const MakeAdmin = () => {
     const handleFormSubmit = e => {
         setSuccessful(false)
         const user = { email };
-        fetch('http://localhost:5000/users/admin', {
+        fetch('https://blooming-refuge-00817.herokuapp.com/users/admin', {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'

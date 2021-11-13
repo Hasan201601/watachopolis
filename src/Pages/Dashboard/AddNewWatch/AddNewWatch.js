@@ -9,7 +9,7 @@ const AddNewWatch = () => {
     const onSubmit = data => {
         setSuccessful(false)
         console.log(data)
-        fetch("http://localhost:5000/watches", {
+        fetch("https://blooming-refuge-00817.herokuapp.com/watches", {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
