@@ -1,6 +1,12 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import StarIcon from '@mui/icons-material/Star';
+import CardMedia from '@mui/material/CardMedia';
+import { Avatar, Container, Rating, Typography } from "@mui/material";
+import { CardActionArea } from '@mui/material';
 
 // swiper bundle styles
 import 'swiper/swiper-bundle.min.css'
@@ -14,41 +20,73 @@ import 'swiper/components/pagination/pagination.min.css'
 
 
 // import Swiper core and required modules
+
 import SwiperCore, {
-    Pagination
+    Lazy, Pagination, Navigation
 } from 'swiper';
+import { Box } from "@mui/system";
 
 // install Swiper modules
-SwiperCore.use([Pagination]);
-
-
+SwiperCore.use([Pagination, Navigation]);
 
 const Reviews = () => {
+    const [reviews, setReviews] = useState([])
+    useEffect(() => {
+        fetch('http://localhost:5000/reviews')
+            .then(res => res.json())
+            .then(data => setReviews(data))
+    }, [])
     return (
-        <>
-            <Swiper slidesPerView={1} spaceBetween={10} pagination={{
-                "clickable": true
-            }} breakpoints={{
-                "@0.00": {
-                    "slidesPerView": 1,
-                    "spaceBetween": 10
-                },
-                "@0.75": {
-                    "slidesPerView": 2,
-                    "spaceBetween": 20
-                },
-                "@1.00": {
-                    "slidesPerView": 3,
-                    "spaceBetween": 40
-                },
-                "@1.50": {
-                    "slidesPerView": 4,
-                    "spaceBetween": 50
-                }
-            }} className="mySwiper">
-                <SwiperSlide>Slide 1</SwiperSlide><SwiperSlide>Slide 2</SwiperSlide><SwiperSlide>Slide 3</SwiperSlide><SwiperSlide>Slide 4</SwiperSlide><SwiperSlide>Slide 5</SwiperSlide><SwiperSlide>Slide 6</SwiperSlide><SwiperSlide>Slide 7</SwiperSlide><SwiperSlide>Slide 8</SwiperSlide><SwiperSlide>Slide 9</SwiperSlide>
-            </Swiper>
-        </>
+        <Box className="App" sx={{ my: 5 }}>
+            <Container>
+                <Typography variant="h3" sx={{ my: 2 }}>Reviews</Typography>
+                <Swiper navigation={true} breakpoints={{
+                    "640": {
+                        "slidesPerView": 1,
+                        "spaceBetween": 20
+                    },
+                    "768": {
+                        "slidesPerView": 2,
+                        "spaceBetween": 40
+                    },
+                    "1024": {
+                        "slidesPerView": 3,
+                        "spaceBetween": 50
+                    }
+                }} className="mySwiper">
+                    {reviews.map(review =>
+                        <SwiperSlide key={review._id}>
+                            <Card sx={{ maxWidth: 345, margin: '0 auto', verticalAlign: 'center' }}>
+                                <CardActionArea>
+                                    <Avatar
+                                        alt="Remy Sharp"
+                                        src={review?.img}
+                                        sx={{
+                                            width: "40%", height: "40%", display: 'block',
+                                            margin: 'auto'
+                                        }}
+                                    />
+                                    <CardContent>
+
+                                        <Rating name="text-feedback"
+                                            value={review?.rating}
+                                            readOnly
+                                            precision={0.1}
+                                            emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />} />
+                                        <Typography variant="h6" >
+                                            {review?.name}
+                                        </Typography>
+                                        <Typography variant="body2" color="text.secondary">
+                                            {review?.description}
+                                        </Typography>
+                                    </CardContent>
+                                </CardActionArea>
+                            </Card>
+                        </SwiperSlide>
+                    )}
+                </Swiper>
+            </Container>
+        </Box>
     );
 };
 

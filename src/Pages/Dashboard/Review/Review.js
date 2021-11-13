@@ -29,10 +29,13 @@ const Review = () => {
     const [value, setValue] = React.useState(2);
     console.log(value)
     const [hover, setHover] = React.useState(-1);
+    const { photoURL } = user;
+    console.log(photoURL)
     const { register, handleSubmit, reset } = useForm();
     const onSubmit = data => {
         setSuccessful(false)
         data.rating = value;
+        data.img = photoURL;
         console.log(data);
         //send review to database
         fetch('http://localhost:5000/reviews', {
@@ -90,7 +93,7 @@ const Review = () => {
 
                 <TextField defaultValue={user.email} variant="standard" placeholder="email" sx={{ ml: 1, width: '48%', textAlign: 'center' }} {...register("title")} />
             </Box>
-            <TextField variant="standard" placeholder="Write Your Review" rows={3} multiline sx={{ width: { lg: '45%', md: '65%', xs: '80%' }, my: 2, resize: 'vertical' }} type="number" {...register("age", { min: 18, max: 99 })} />
+            <TextField variant="standard" placeholder="Write Your Review" rows={3} multiline sx={{ width: { lg: '45%', md: '65%', xs: '80%' }, my: 2, resize: 'vertical' }} type="number" {...register("description", { min: 18, max: 99 })} />
             <Button variant="contained" type="submit" >Write A Review</Button>
             {successful && <Alert severity="success">Review Submitted Successfully</Alert>}
         </Box>
