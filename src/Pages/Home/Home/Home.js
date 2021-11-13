@@ -3,6 +3,7 @@ import Navigation from '../../Shared/Navigation/Navigation';
 import Banner from '../Banner/Banner';
 import { useLocation } from 'react-router-dom'
 import Watches from '../Watches/Watches';
+import Reviews from '../Reviews/Reviews';
 
 const Home = () => {
     const location = useLocation()
@@ -12,6 +13,7 @@ const Home = () => {
             <Navigation></Navigation>
             <Banner></Banner>
             <Watches></Watches>
+            <Reviews></Reviews>
         </div>
     );
 };

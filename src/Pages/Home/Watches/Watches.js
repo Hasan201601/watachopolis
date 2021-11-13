@@ -15,7 +15,7 @@ const Watches = () => {
     }, [])
 
     return (
-        <div>
+        <div className="App">
             <Container sx={{ pt: 5 }}>
                 <Typography sx={{ pt: 8, color: '#A99577' }} variant="subtitle1" gutterBottom component="div">
                     OUR PRODUCTS
