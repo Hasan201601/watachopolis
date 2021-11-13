@@ -9,8 +9,8 @@ const Watch = ({ watch }) => {
         history.push(`/purchase/${id}`);
     }
     return (
-        <Grid item xs={2} sm={4} md={4}>
-            <Card elevation={3} sx={{ maxWidth: 345, backgroundColor: 'aliceblue' }}>
+        <Grid item xs={4} sm={4} md={4}>
+            <Card elevation={3} sx={{ maxWidth: 345, margin: '0 auto', backgroundColor: 'aliceblue' }}>
                 <CardMedia
                     component="img"
                     sx={{ height: '250px', objectFit: 'cover' }}

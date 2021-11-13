@@ -37,7 +37,7 @@ function NavigationDrawer() {
                     </ListItem>
                     <ListItem onClick={() => setOpenDrawer(false)}>
                         <ListItemText>
-                            <Link to="/about" style={style}>Catalog</Link>
+                            <Link to="/catalog" style={style}>Catalog</Link>
                         </ListItemText>
                     </ListItem>
                     <ListItem onClick={() => setOpenDrawer(false)}>

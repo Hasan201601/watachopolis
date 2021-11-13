@@ -24,7 +24,7 @@ const Watches = () => {
                     Our Bestsellers
                 </Typography>
                 <Box sx={{ flexGrow: 1 }}>
-                    <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
+                    <Grid container spacing={{ xs: 1, sm: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
                         {
                             watches.slice(0, 6).map(watch => <Watch
                                 key={watch._id}
