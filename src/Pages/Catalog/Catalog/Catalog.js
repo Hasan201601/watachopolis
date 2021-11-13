@@ -1,11 +1,14 @@
 import React from 'react';
 import Navigation from '../../Shared/Navigation/Navigation';
+import CatalogBanner from '../CatalogBanner/CatalogBanner';
+import CatalogWatches from '../CatalogWatches/CatalogWatches';
 
 const Catalog = () => {
     return (
         <div>
             <Navigation />
-            This is Catalog
+            <CatalogBanner></CatalogBanner>
+            <CatalogWatches></CatalogWatches>
         </div>
     );
 };

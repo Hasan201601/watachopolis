@@ -4,6 +4,8 @@ import Banner from '../Banner/Banner';
 import { useLocation } from 'react-router-dom'
 import Watches from '../Watches/Watches';
 import Reviews from '../Reviews/Reviews';
+import Footer from '../../Shared/Footer/Footer';
+import NewsLetter from '../NewsLetter/NewsLetter';
 
 const Home = () => {
     const location = useLocation()
@@ -14,6 +16,8 @@ const Home = () => {
             <Banner></Banner>
             <Watches></Watches>
             <Reviews></Reviews>
+            <NewsLetter></NewsLetter>
+            <Footer></Footer>
         </div>
     );
 };

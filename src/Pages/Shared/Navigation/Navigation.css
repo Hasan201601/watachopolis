@@ -1,5 +1,5 @@
 .navColor{
-    background-color: rgb(3, 97, 204) !important;
+    background: linear-gradient(90deg, rgba(165,164,180,1) 0%, rgba(30,48,106,1) 0%, rgba(30,161,207,0.981127485173757) 100%) !important;
     border-bottom: none;
     outline: none;
     box-shadow: none !important;

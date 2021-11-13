@@ -8,11 +8,12 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Button } from '@mui/material';
+import { pink, blue, green } from '@mui/material/colors';
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
-        backgroundColor: theme.palette.common.black,
+        backgroundColor: pink[500],
         color: theme.palette.common.white,
     },
     [`&.${tableCellClasses.body}`]: {
@@ -70,7 +71,7 @@ const ManageAllOrders = () => {
     }
     return (
         <div>
-            <TableContainer elevation="0" sx={{ p: 4 }}>
+            <TableContainer elevation="0" sx={{ p: 4, mt: -2 }}>
                 <Table sx={{ minWidth: 700 }} aria-label="customized table">
                     <TableHead>
                         <TableRow>
@@ -96,8 +97,8 @@ const ManageAllOrders = () => {
                                 <StyledTableCell align="center">{order?.city}</StyledTableCell>
                                 <StyledTableCell align="center">{order?.status}</StyledTableCell>
                                 <StyledTableCell sx={{ cursor: 'pointer' }} align="center" >
-                                    <Button onClick={() => handleApproveStatus(order._id)} variant="contained" size="small" sx={{ textTransform: 'lowercase', mr: 1 }}>approve</Button>
-                                    <DeleteIcon onClick={() => handleDeleteOrder(order._id)} />
+                                    <Button onClick={() => handleApproveStatus(order._id)} variant="contained" size="small" sx={{ textTransform: 'lowercase', mr: 1, backgroundColor: green[500], fontWeight: 600 }}>approve</Button>
+                                    <DeleteIcon sx={{ color: blue[700], cursor: 'pointer' }} onClick={() => handleDeleteOrder(order._id)} />
                                 </StyledTableCell>
                             </StyledTableRow>
                         ))}

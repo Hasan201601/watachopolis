@@ -8,6 +8,7 @@ import CardMedia from '@mui/material/CardMedia';
 import { Avatar, Container, Rating, Typography } from "@mui/material";
 import { CardActionArea } from '@mui/material';
 
+
 // swiper bundle styles
 import 'swiper/swiper-bundle.min.css'
 
@@ -37,9 +38,9 @@ const Reviews = () => {
             .then(data => setReviews(data))
     }, [])
     return (
-        <Box className="App" sx={{ my: 5 }}>
+        <Box className="App" sx={{ my: 5, py: 5 }}>
             <Container>
-                <Typography variant="h3" sx={{ my: 2 }}>Reviews</Typography>
+                <Typography className="Titillium" variant="h3" sx={{ my: 4 }}>Reviews</Typography>
                 <Swiper navigation={true} breakpoints={{
                     "640": {
                         "slidesPerView": 1,
@@ -56,7 +57,7 @@ const Reviews = () => {
                 }} className="mySwiper">
                     {reviews.map(review =>
                         <SwiperSlide key={review._id}>
-                            <Card sx={{ maxWidth: 345, margin: '0 auto', verticalAlign: 'center' }}>
+                            <Card sx={{ maxWidth: 345, margin: '0 auto', alignItems: 'stretch' }} >
                                 <CardActionArea>
                                     <Avatar
                                         alt="Remy Sharp"

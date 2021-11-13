@@ -1,5 +1,7 @@
-@media screen and (max-width:768px) {
-    .offcanvas{
-    max-width: 80%;
-    }
+.Titillium{
+    font-family: 'Titillium Web' !important
+    ;
+}
+.inherited{
+    font-family: inherit;
 }

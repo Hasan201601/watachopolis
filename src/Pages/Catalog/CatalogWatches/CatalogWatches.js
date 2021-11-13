@@ -1,10 +1,9 @@
 import { Container, Grid, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import React, { useEffect, useState } from 'react';
+import Watch from '../../Home/Watch/Watch';
 
-import Watch from '../Watch/Watch';
-
-const Watches = () => {
+const CatalogWatches = () => {
     const [watches, setWatches] = useState([]);
     console.log(watches)
 
@@ -17,16 +16,10 @@ const Watches = () => {
     return (
         <div className="App">
             <Container sx={{ pt: 5 }}>
-                <Typography sx={{ pt: 8, color: '#A99577' }} variant="subtitle1" className="Titillium" gutterBottom component="div">
-                    OUR PRODUCTS
-                </Typography>
-                <Typography className="Titillium" sx={{ mb: 5 }} variant="h3" gutterBottom component="div">
-                    Our Bestsellers
-                </Typography>
                 <Box sx={{ flexGrow: 1 }}>
                     <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
                         {
-                            watches.slice(0, 6).map(watch => <Watch
+                            watches.map(watch => <Watch
                                 key={watch._id}
                                 watch={watch}
                             ></Watch>)
@@ -38,4 +31,4 @@ const Watches = () => {
     );
 };
 
-export default Watches;
+export default CatalogWatches;

@@ -27,7 +27,7 @@ const AddNewWatch = () => {
             <TextField variant="standard" placeholder="specification1" sx={{ width: { lg: '45%', md: '65%', xs: '80%' }, my: 2 }} type="text" {...register("spec1")} />
             <TextField variant="standard" placeholder="specification2" sx={{ width: { lg: '45%', md: '65%', xs: '80%' }, my: 2 }} type="text" {...register("spec2")} />
             <TextField variant="standard" placeholder="specification3" sx={{ width: { lg: '45%', md: '65%', xs: '80%' }, my: 2 }} type="text" {...register("spec3")} />
-            <TextField variant="standard" placeholder="Description" rows={3} multiline sx={{ width: { lg: '45%', md: '65%', xs: '80%' }, my: 2, resize: 'vertical' }} type="number" {...register("age", { min: 18, max: 99 })} />
+            <TextField variant="standard" placeholder="Description" rows={3} multiline sx={{ width: { lg: '45%', md: '65%', xs: '80%' }, my: 2, resize: 'vertical' }} type="number" {...register("description", { min: 18, max: 99 })} />
             <Button variant="contained" type="submit" >ADD WATCH</Button>
             {successful && <Alert severity="success">Product Added Successfully</Alert>}
         </Box>

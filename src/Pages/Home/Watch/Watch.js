@@ -10,26 +10,26 @@ const Watch = ({ watch }) => {
     }
     return (
         <Grid item xs={2} sm={4} md={4}>
-            <Card sx={{ maxWidth: 345, fontFamily: "Mohave" }}>
+            <Card elevation={3} sx={{ maxWidth: 345, backgroundColor: 'aliceblue' }}>
                 <CardMedia
                     component="img"
-                    height="250"
+                    sx={{ height: '250px', objectFit: 'cover' }}
                     image={img}
                     alt="watch"
                 />
                 <CardContent>
-                    <Typography gutterBottom variant="h5" sx={{ fontWeight: '500' }} component="div">
+                    <Typography gutterBottom variant="h5" sx={{ fontWeight: '500' }} className="Titillium" component="div">
                         {title}
                     </Typography>
-                    <Typography variant="body2" color="text.secondary">
+                    <Typography className="Titillium" variant="body2" color="text.secondary">
                         {description?.slice(0, 150)}...
                     </Typography>
-                    <Typography variant="h6" sx={{ pt: 3 }}>
+                    <Typography className="Titillium" variant="h6" sx={{ pt: 2 }}>
                         Price: ${price}
                     </Typography>
                 </CardContent>
                 <CardActions>
-                    <Button onClick={() => goToPurchase(_id)} sx={{ background: '#A99577', border: '2px solid #A99577', borderRadius: '0', marginTop: '10px', transition: 'all ease-in-out 0.2s', color: 'white', mb: '3', width: '100%', '&:hover': { background: 'transparent', color: 'black', border: '2px solid black' } }}>BUY NOW</Button>
+                    <Button className="Titillium" onClick={() => goToPurchase(_id)} sx={{ background: 'linear-gradient(90deg, rgba(165,164,180,1) 0%, rgba(30,48,106,1) 0%, rgba(30,161,207,0.981127485173757) 100%)', border: '2px solid #A99577', borderRadius: '0', marginTop: '10px', transition: 'all ease-in-out 0.2s', color: 'white', mb: 3, width: '100%' }}>BUY NOW</Button>
                 </CardActions>
             </Card>
         </Grid>

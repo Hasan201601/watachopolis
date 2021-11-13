@@ -40,7 +40,7 @@ const MakeAdmin = () => {
                     sx={{ my: 1 }}
                     onBlur={handleOnBlur}
                 ></TextField>
-                <Button type="submit" size="large" variant="contained" sx={{ my: 2 }}>Make Admin</Button>
+                <Button type="submit" size="large" variant="contained" sx={{ my: 2, fontWeight: 'bold' }}>Make Admin</Button>
                 {successful && <Alert severity="success">Admin Made Successfully</Alert>}
             </Box>
 

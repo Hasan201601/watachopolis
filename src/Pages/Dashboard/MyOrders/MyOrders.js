@@ -6,6 +6,8 @@ import useAuth from '../../../Hooks/useAuth';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import ButtonBase from '@mui/material/ButtonBase';
+import { pink, blue } from '@mui/material/colors';
+import { Box } from '@mui/system';
 
 
 
@@ -45,44 +47,50 @@ const MyOrders = () => {
     }
 
     return (
-        <Paper elevation="0" sx={{ p: 2, margin: 'auto', maxWidth: 500, flexGrow: 1 }}>
-            {orders?.map((order) => (
-                <Grid key={order?._id} container spacing={2} sx={{ my: 2 }}>
-                    <Grid item>
-                        <ButtonBase sx={{ width: 128, height: 128 }}>
-                            <Img alt="complex" src={order?.orderedItem.img} />
-                        </ButtonBase>
-                    </Grid>
-                    <Grid item xs={12} sm container>
-                        <Grid item xs container direction="column" spacing={2}>
-                            <Grid item xs>
-                                <Typography gutterBottom variant="subtitle1" component="div">
-                                    Standard license
-                                </Typography>
-                                <Typography variant="body2" gutterBottom>
-                                    Full resolution 1920x1080 • JPEG
-                                </Typography>
-                                <Typography variant="body2" color="text.secondary">
-                                    ID: 1030114
-                                </Typography>
+        <Box>
+            {!orders?.length ?
+                <h2>You haven't placed any order yet!</h2>
+                :
+                <Paper sx={{ p: 1, margin: 'auto', maxWidth: 800, flexGrow: 1 }}>
+                    {orders?.map((order) => (
+                        <Grid key={order?._id} container spacing={2} sx={{ my: 2 }}>
+                            <Grid item xs={12} md={4}>
+                                <ButtonBase >
+                                    <Img alt="complex" sx={{ maxWidth: '200px' }} src={order?.orderedItem.img} />
+                                </ButtonBase>
                             </Grid>
-                            <Grid item>
-                                <Typography onClick={() => handleDeleteOrder(order._id)} sx={{ cursor: 'pointer' }} variant="body2">
-                                    Remove <DeleteIcon />
-                                </Typography>
+                            <Grid item xs={12} md={8} container sx={{ p: 2 }}>
+                                <Grid item xs container direction="column" spacing={2}>
+                                    <Grid item xs>
+                                        <Typography gutterBottom variant="h6" component="div">
+                                            {order?.orderedItem.title}
+                                        </Typography>
+                                        <Typography variant="body1" gutterBottom>
+                                            {order?.email}
+                                        </Typography>
+                                        <Typography variant="body2" color="text.secondary">
+                                            ID: {order?._id}
+                                        </Typography>
+                                    </Grid>
+                                    <Grid item>
+                                        <Typography onClick={() => handleDeleteOrder(order._id)} sx={{ color: blue[700], cursor: 'pointer' }} variant="body2">
+                                            Remove <DeleteIcon />
+                                        </Typography>
+                                    </Grid>
+                                </Grid>
+                                <Grid item >
+                                    <Typography variant="h6" component="div">
+                                        ${order?.orderedItem.price}
+                                    </Typography>
+                                </Grid>
                             </Grid>
                         </Grid>
-                        <Grid item>
-                            <Typography variant="subtitle1" component="div">
-                                $19.00
-                            </Typography>
-                        </Grid>
-                    </Grid>
-                </Grid>
-            ))
-            }
+                    ))
+                    }
 
-        </Paper >
+                </Paper >
+            }
+        </Box>
     );
 };
 

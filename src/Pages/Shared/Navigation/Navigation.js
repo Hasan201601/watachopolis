@@ -7,6 +7,7 @@ import {
     useTheme,
     useMediaQuery,
     Button,
+    Container,
 } from '@mui/material';
 import { Link, useLocation } from "react-router-dom";
 import { Box } from "@mui/system";
@@ -26,7 +27,8 @@ const Navigation = () => {
         color: 'white',
         textDecoration: 'none',
         fontSize: '20px',
-        marginLeft: '15px'
+        marginLeft: '15px',
+        textShadow: "1px 1px 1px grey"
     }
     const locationStory = window.location.pathname;
     console.log(locationStory)
@@ -44,11 +46,12 @@ const Navigation = () => {
     window.addEventListener('scroll', changeBackground)
 
     return (
-        <Box sx={{ flexGrow: 1 }}>
-            <AppBar elevation="0" className={navigation ? 'navColor' : 'navTransparent'} position="fixed">
+        <Box sx={{ flexGrow: 1 }} className="Titillium">
+
+            <AppBar sx={{ px: 4 }} elevation="0" className={navigation ? 'navColor' : 'navTransparent'} position="fixed">
                 <CssBaseline />
                 <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                    <Typography variant="h4" >
+                    <Typography variant="h4" className="Titillium" sx={{ textShadow: "1px 1px 1px grey" }}>
                         Watchopolis
 
                     </Typography>
@@ -67,7 +70,7 @@ const Navigation = () => {
                             </Link>
                             {
                                 user?.email ?
-                                    <Button onClick={logOut} variant="contained">LogOut</Button> :
+                                    <Button sx={{ ml: 2 }} className="Titillium" onClick={logOut} variant="contained">LogOut</Button> :
                                     <Link to="/login" style={style}>
                                         Login
                                     </Link>

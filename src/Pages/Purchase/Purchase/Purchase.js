@@ -65,7 +65,7 @@ const Purchase = () => {
 
                         <TextField sx={{ width: { lg: '100%', md: '90%', xs: '80%' }, my: 2 }} {...register("city")} type="text" id="standard-basic" label="City" variant="standard" required />
 
-                        <Button sx={{ background: '#A99577', border: '2px solid #A99577', borderRadius: '0', marginTop: '10px', transition: 'all ease-in-out 0.2s', color: 'white', mb: '3', width: '100%', '&:hover': { background: 'transparent', color: 'black', border: '2px solid black' } }} type="submit">Confirm Order</Button>
+                        <Button sx={{ background: 'linear-gradient(90deg, rgba(165,164,180,1) 0%, rgba(30,48,106,1) 0%, rgba(30,161,207,0.981127485173757) 100%)', borderRadius: '0', marginTop: '10px', transition: 'all ease-in-out 0.2s', color: 'white', mb: '3', width: '100%' }} type="submit">Confirm Order</Button>
                     </Box>
                 </Grid>
 
@@ -79,11 +79,11 @@ const Purchase = () => {
                                         <Typography gutterBottom variant="h5" component="div">
                                             {watch.title}
                                         </Typography>
-                                        <Typography variant="body2" gutterBottom>
-                                            Full resolution 1920x1080 • JPEG
+                                        <Typography color="text.secondary" variant="body2" gutterBottom>
+                                            {watch.description}
                                         </Typography>
-                                        <Typography variant="body2" color="text.secondary">
-                                            ID: 1030114
+                                        <Typography variant="subtitle1" >
+                                            Price:${watch.price}
                                         </Typography>
                                     </Grid>
                                 </Grid>
@@ -91,7 +91,7 @@ const Purchase = () => {
 
                             <Grid item>
                                 <ButtonBase sx={{ width: 250, height: 180 }}>
-                                    <img style={{ width: '100%', height: '100%' }} alt="complex" src={watch?.img} />
+                                    <img style={{ width: '100%', height: '100%', objectFit: 'cover' }} alt="complex" src={watch?.img} />
                                 </ButtonBase>
                             </Grid>
                         </Grid>

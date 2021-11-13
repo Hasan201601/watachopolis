@@ -12,11 +12,12 @@ import UpdateIcon from '@mui/icons-material/Update';
 import Modal from '@mui/material/Modal';
 import { Box } from '@mui/system';
 import { Button, Typography } from '@mui/material';
+import { pink, blue } from '@mui/material/colors';
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
-        backgroundColor: theme.palette.common.black,
+        backgroundColor: pink[500],
         color: theme.palette.common.white,
     },
     [`&.${tableCellClasses.body}`]: {
@@ -82,7 +83,7 @@ const ManageWatches = () => {
                                     {watch?.title}
                                 </StyledTableCell>
                                 <StyledTableCell align="left">{watch?.price}</StyledTableCell>
-                                <StyledTableCell align="center" ><DeleteIcon onClick={() => handleDeleteWatch(watch._id)} /></StyledTableCell>
+                                <StyledTableCell align="center" ><DeleteIcon sx={{ color: blue[700], cursor: 'pointer' }} onClick={() => handleDeleteWatch(watch._id)} /></StyledTableCell>
                             </StyledTableRow>
                         ))}
                     </TableBody>
