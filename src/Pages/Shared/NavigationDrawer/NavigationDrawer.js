@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import {
+    Button,
     Drawer,
     IconButton,
     List,
@@ -9,6 +10,7 @@ import {
 import { Link } from "react-router-dom";
 import MenuIcon from '@mui/icons-material/Menu';
 import { flexbox } from "@mui/system";
+import useAuth from '../../../Hooks/useFirebase'
 
 const drawerWidth = '80vw';
 const style = {
@@ -20,6 +22,7 @@ const style = {
 }
 
 function NavigationDrawer() {
+    const { user, logOut } = useAuth()
     const [openDrawer, setOpenDrawer] = useState(false);
     return (
         <>
@@ -45,11 +48,20 @@ function NavigationDrawer() {
                             <Link to="/dashboard" style={style}>Dashboard</Link>
                         </ListItemText>
                     </ListItem>
-                    <ListItem onClick={() => setOpenDrawer(false)}>
-                        <ListItemText>
-                            <Link to="/login" style={style}>Login</Link>
-                        </ListItemText>
-                    </ListItem>
+                    {
+                        user?.email ?
+                            <ListItem onClick={() => setOpenDrawer(false)}>
+                                <ListItemText>
+                                    <Button sx={{ ml: 2 }} className="Titillium" onClick={logOut} variant="contained">LogOut</Button>
+                                </ListItemText>
+                            </ListItem>
+                            :
+                            <ListItem onClick={() => setOpenDrawer(false)}>
+                                <ListItemText>
+                                    <Link to="/login" style={style}>Login</Link>
+                                </ListItemText>
+                            </ListItem>
+                    }
                 </List>
             </Drawer>
             <IconButton sx={{ ms: 'auto' }} onClick={() => setOpenDrawer(!openDrawer)}>
